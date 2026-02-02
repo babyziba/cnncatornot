@@ -1,18 +1,3 @@
-"""
-Binary “cat / not-cat” on CIFAR-10 with:
-• Inverse-frequency sampler + pos-weighted BCE (TRAIN OBJECTIVE)
-• Optuna HPO (optional)
-• One-Cycle LR (base LR = 5e-4, max LR = 3e-3, longer ramp-up)
-• Strong regularization: dropout = 0.30, weight_decay = 1e-6
-• Label smoothing (ε = 0.05) — TRAIN ONLY
-• Simplified augmentation (flip, crop, rotate, mild color jitter, random erasing p=0.4)
-• Larger batch (128) for smoother gradients
-• No early stopping — fixed 200-epoch run
-• Separate loss & accuracy plots
-• BatchNorm on FC layers + gradient clipping (max_norm=1.0)
-• Also compute PLAIN BCE on train (for fair plotting vs val).
-• Fit temperature on val after training → reduces plain-BCE (train/val/test) with accuracy unchanged.
-"""
 
 import torch, random, optuna
 import torch.nn as nn
